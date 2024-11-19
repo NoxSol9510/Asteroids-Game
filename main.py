@@ -9,6 +9,7 @@ def main():
     clock = pygame.time.Clock()
     running = True
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+    dt = 0
 
     pygame.display.set_caption("Asteroids Game")
     print("Starting asteroids!")
@@ -20,10 +21,11 @@ def main():
             if event.type == pygame.QUIT:  # Close the window
                 running = False
 
+        player.update(dt)
         screen.fill((0, 0, 0))  # Clear the screen
         player.draw(screen)     # Draw the player
         pygame.display.flip()   # Update the display
-        clock.tick(60)
+        dt = clock.tick(60) / 1000
 
     pygame.quit()  # Clean up and close the game
 
